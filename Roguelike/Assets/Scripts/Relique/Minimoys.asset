@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Minimoys
   m_EditorClassIdentifier: 
   ModifSpeed: 1
-  ModifSize: -0.2
+  ModifSize: 0
   ModifFOV: 0
   ModifBulletFireRate: -0.5
   ModifBulletDamage: 0
   ModifDetectionRange: 0
   ModifBulletDuration: 0
-  ModifBulletSpeed: -0.5
+  ModifBulletSpeed: 0.5
   BulletSkin: {fileID: 0}
