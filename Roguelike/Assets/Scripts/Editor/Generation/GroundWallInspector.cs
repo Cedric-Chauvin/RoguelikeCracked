@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GroundWallGeneration))]
+[CustomEditor(typeof(MapGeneration))]
 public class GroundWallInspector : Editor
 {
-    private GroundWallGeneration generator;
+    private MapGeneration generator;
 
     private void OnEnable()
     {
-        generator = FindObjectOfType<GroundWallGeneration>();
+        generator = FindObjectOfType<MapGeneration>();
     }
 
     public override void OnInspectorGUI()
