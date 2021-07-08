@@ -45,12 +45,44 @@ public class ShootManager : MonoBehaviour
                 if (Distance == -1)
                 {
                     Distance = dist;
-                    Target = collider.transform;
+                    int Count = 0;
+                    RaycastHit2D[] hit = Physics2D.LinecastAll(transform.position, collider.transform.position);
+                    for (int i = 0; i < hit.Length; i++)
+                    {
+                        if (hit[i].collider.tag != "Wall")
+                        {
+                            Count++;
+                        }
+                    }
+                    if (Count == hit.Length)
+                    {
+                        Target = collider.transform;
+                    }
+                    else
+                    {
+                        Target = null;
+                    }
                 }
                 else if (dist < Distance)
                 {
                     Distance = dist;
-                    Target = collider.transform;
+                    int Count = 0;
+                    RaycastHit2D[] hit = Physics2D.LinecastAll(transform.position, collider.transform.position);
+                    for (int i = 0; i < hit.Length; i++)
+                    {
+                        if (hit[i].collider.tag != "Wall")
+                        {
+                            Count++;
+                        }
+                    }
+                    if (Count == hit.Length)
+                    {
+                        Target = collider.transform;
+                    }
+                    else
+                    {
+                        Target = null;
+                    }
 
                     //Debug.Log("Nouvelle target : " + collider.gameObject.name);
                 }
@@ -90,20 +122,8 @@ public class ShootManager : MonoBehaviour
             
             if (IsInRange == true && Target != null)
             {
-                int Count = 0;
-                RaycastHit2D[] hit = Physics2D.LinecastAll(transform.position, Target.position);
-                for (int i = 0; i < hit.Length; i++)
-                {
-                     if (hit[i].collider.tag != "Wall")
-                     {
-                        Count++;
-                     }
-                }
-                if (Count == hit.Length)
-                {
-                    currentBullet = objectPooler.SpawnFromPool("BaseBullet", transform.position, Quaternion.identity).transform;
-                    currentBullet.GetComponent<Rigidbody2D>().AddForce((Target.position - transform.position) * P_Manager.BulletSpeed);
-                }
+                currentBullet = objectPooler.SpawnFromPool("BaseBullet", transform.position, Quaternion.identity).transform;
+                currentBullet.GetComponent<Rigidbody2D>().AddForce((Target.position - transform.position) * P_Manager.BulletSpeed);
             }
             else
             {
