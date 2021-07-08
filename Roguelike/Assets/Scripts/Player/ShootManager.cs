@@ -38,66 +38,44 @@ public class ShootManager : MonoBehaviour
 
         if (colls.Count > 0)
         {
+            if (Target) //initialise la distance si il y a deja une target
+            {
+                Distance = Vector2.Distance(transform.position, Target.position);
+                if (Distance > P_Manager.DetectionRange || !isInSight(Target))//si la target est hors range ou hors vue
+                {
+                    Distance = -1; 
+                    IsInRange = false;
+                    Target = null;
+                }
+            }
             foreach (var collider in colls)
             {
+                if (Target != null && collider.gameObject == Target.gameObject)
+                    continue; //si on tombe sur la target pas besoin de check
+
                 float dist = Vector2.Distance(transform.position, collider.transform.position);
 
                 if (Distance == -1)
                 {
-                    Distance = dist;
-                    int Count = 0;
-                    RaycastHit2D[] hit = Physics2D.LinecastAll(transform.position, collider.transform.position);
-                    for (int i = 0; i < hit.Length; i++)
+                    if (isInSight(collider.transform))
                     {
-                        if (hit[i].collider.tag != "Wall")
-                        {
-                            Count++;
-                        }
-                    }
-                    if (Count == hit.Length)
-                    {
+                        Distance = dist;
                         Target = collider.transform;
-                    }
-                    else
-                    {
-                        Target = null;
+                        IsInRange = true;
                     }
                 }
                 else if (dist < Distance)
                 {
-                    Distance = dist;
-                    int Count = 0;
-                    RaycastHit2D[] hit = Physics2D.LinecastAll(transform.position, collider.transform.position);
-                    for (int i = 0; i < hit.Length; i++)
+                    if (isInSight(collider.transform))
                     {
-                        if (hit[i].collider.tag != "Wall")
-                        {
-                            Count++;
-                        }
-                    }
-                    if (Count == hit.Length)
-                    {
+                        Distance = dist;
                         Target = collider.transform;
-                    }
-                    else
-                    {
-                        Target = null;
+                        IsInRange = true;
                     }
 
                     //Debug.Log("Nouvelle target : " + collider.gameObject.name);
                 }
-                else if (Target != null && collider.gameObject == Target.gameObject)
-                {
-                    Distance = dist;
-                }
-                else
-                {
-                    Distance = -1;
-                    IsInRange = false;
-                }
             }
-
-            IsInRange = true;
         }
         else
         {
@@ -106,6 +84,20 @@ public class ShootManager : MonoBehaviour
             IsInRange = false;
             //Debug.Log("Pas d'ennemies");
         }
+    }
+
+    private bool isInSight(Transform enemy)
+    {
+        int Count = 0;
+        RaycastHit2D[] hit = Physics2D.LinecastAll(transform.position, enemy.position);
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider.tag != "Wall")
+            {
+                Count++;
+            }
+        }
+        return Count == hit.Length;
     }
     IEnumerator AutoFire()
     {
