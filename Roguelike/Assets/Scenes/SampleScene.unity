@@ -488,6 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ba60f553a14484f9f3542a735c04a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
 --- !u!114 &284723790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,8 +502,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSpeed: 1
-  VisionRange: 1
+  PlayerHP: 100
   PlayerSize: 1
+  PlayerInvincibility: 0
+  VisionRange: 1
   DetectionRange: 2.5
   CameraFOV: 5
   BulletDamage: 10

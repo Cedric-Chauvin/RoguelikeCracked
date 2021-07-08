@@ -9,7 +9,7 @@ public class ShootManager : MonoBehaviour
     private bool IsInRange = false;
 
     private float Distance = -1f;
-    private Transform Target;
+    public Transform Target;
 
     ObjectPooler objectPooler;
 
@@ -21,7 +21,7 @@ public class ShootManager : MonoBehaviour
         StartCoroutine(AutoFire());
     }
 
-    private void Update() //Tout l'update sert à définir la cible la plus proche
+    private void Update() //Tout l'update sert Ã  dÃ©finir la cible la plus proche
     {
         Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, P_Manager.DetectionRange);
         List<Collider2D> colls = new List<Collider2D>();
@@ -87,17 +87,28 @@ public class ShootManager : MonoBehaviour
             int Rand = Random.Range(0, 4);
 
             string projectil = projectils[Rand];*/
-
-           if (IsInRange == true && Target != null)
-           {
-                currentBullet = objectPooler.SpawnFromPool("BaseBullet", transform.position, Quaternion.identity).transform;
-                currentBullet.GetComponent<Rigidbody2D>().AddForce((Target.position - transform.position) * P_Manager.BulletSpeed);
-           }
-           else
-           {
+            
+            if (IsInRange == true && Target != null)
+            {
+                int Count = 0;
+                RaycastHit2D[] hit = Physics2D.LinecastAll(transform.position, Target.position);
+                for (int i = 0; i < hit.Length; i++)
+                {
+                     if (hit[i].collider.tag != "Wall")
+                     {
+                        Count++;
+                     }
+                }
+                if (Count == hit.Length)
+                {
+                    currentBullet = objectPooler.SpawnFromPool("BaseBullet", transform.position, Quaternion.identity).transform;
+                    currentBullet.GetComponent<Rigidbody2D>().AddForce((Target.position - transform.position) * P_Manager.BulletSpeed);
+                }
+            }
+            else
+            {
                 yield return null;
-           }
+            }
         }
     }
-
 }

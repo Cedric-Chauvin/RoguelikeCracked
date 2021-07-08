@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PATATE
   m_EditorClassIdentifier: 
   EnemyHP: 50
-  EnemyDamage: 0
+  EnemyDamage: 10
   EnemySpeed: 1
