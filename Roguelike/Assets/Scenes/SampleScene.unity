@@ -5943,7 +5943,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fbb45fc669c873d4b852db594602f3a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6037,6 +6037,7 @@ MonoBehaviour:
   PlayerInvincibility: 1
   VisionRange: 1
   DetectionRange: 2.5
+  NbReroll: 0
   CameraFOV: 5
   BulletDamage: 10
   BulletFireRate: 1
@@ -7068,12 +7069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621cb9e205f0bd444adc1b0b8ab770c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  List_Relics:
-  - {fileID: 11400000, guid: 7e5bedfef59afbc4796947499a204474, type: 2}
-  - {fileID: 11400000, guid: 040a83011bc488f408b8d3486d8d1ef9, type: 2}
-  IndexList: 1
-  CineCamera_: {fileID: 0}
-  CineCamera: {fileID: 0}
+  UI_Relic: {fileID: 0}
 --- !u!61 &1143280052
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8300,7 +8296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390254847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.05, z: 0}
+  m_LocalPosition: {x: 0, y: -0.06, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 284723786}
@@ -8497,12 +8493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621cb9e205f0bd444adc1b0b8ab770c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  List_Relics:
-  - {fileID: 11400000, guid: 7e5bedfef59afbc4796947499a204474, type: 2}
-  - {fileID: 11400000, guid: 040a83011bc488f408b8d3486d8d1ef9, type: 2}
-  IndexList: 0
-  CineCamera_: {fileID: 0}
-  CineCamera: {fileID: 0}
+  UI_Relic: {fileID: 0}
 --- !u!1 &1711584910
 GameObject:
   m_ObjectHideFlags: 0
