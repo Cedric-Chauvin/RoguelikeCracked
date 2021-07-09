@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
@@ -14,6 +13,9 @@ public class PlayerManager : MonoBehaviour
     public float VisionRange;
     public float DetectionRange;
     public int NbReroll;
+
+    [Header("Player Relics")]
+    public List<Relic> PlayerRelic;
 
     [Header("Camera Stats")]
     public float CameraFOV;
@@ -56,5 +58,19 @@ public class PlayerManager : MonoBehaviour
             }
             yield return new WaitForSeconds(PlayerInvincibility);
         }
+    }
+
+    public void ApplyRelic(Relic SelectedRelic)
+    {
+
+        PlayerSize = PlayerSize * (1 + SelectedRelic.ModifSize);
+        PlayerSpeed = PlayerSpeed * (1 + SelectedRelic.ModifSpeed);
+        transform.localScale = new Vector3(transform.localScale.x * PlayerSize, transform.localScale.y * PlayerSize, 1);
+        CameraFOV = CameraFOV * (1 + SelectedRelic.ModifFOV);
+        BulletFireRate = BulletFireRate * (1 + SelectedRelic.ModifBulletFireRate);
+        BulletDamage = BulletDamage * (1 + SelectedRelic.ModifBulletDamage);
+        BulletSpeed = BulletSpeed * (1 + SelectedRelic.ModifBulletSpeed);
+        BulletDuration = BulletDuration * (1 + SelectedRelic.ModifBulletDuration);
+        DetectionRange = DetectionRange * (1 + SelectedRelic.ModifDetectionRange);
     }
 }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970157c1ea738974f8d1ea8fa962f8c1, type: 3}
+  m_Name: Minimoys 1
+  m_EditorClassIdentifier: 
+  ModifSpeed: 1
+  ModifSize: 0
+  ModifFOV: 0
+  ModifBulletFireRate: -0.5
+  ModifBulletDamage: 0
+  ModifDetectionRange: 0
+  ModifBulletDuration: 0
+  ModifBulletSpeed: 0.5
+  BulletSkin: {fileID: 0}
+  RelicSprite: {fileID: 21300000, guid: a543b5ec588ae6b42a8d2435dbd63c5d, type: 3}
+  RelicName: TESTNAME1 @
+  RelicDescription: TESTDESCRIPTION1  @
+  RelicLVLText: 
+  RelicLVL: 2

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 970157c1ea738974f8d1ea8fa962f8c1, type: 3}
-  m_Name: New Relic
+  m_Name: TEST
   m_EditorClassIdentifier: 
   ModifSpeed: 0
   ModifSize: 0
@@ -22,6 +22,7 @@ MonoBehaviour:
   ModifBulletSpeed: 0
   BulletSkin: {fileID: 0}
   RelicSprite: {fileID: 21300000, guid: a543b5ec588ae6b42a8d2435dbd63c5d, type: 3}
-  RelicName: TESTNAME2
-  RelicDescription: TESTDESCRIPTION2
-  AlreadyGet: 0
+  RelicName: TESTNAME4
+  RelicDescription: TESTDESCRIPTION4
+  RelicLVLText: 
+  RelicLVL: 1
