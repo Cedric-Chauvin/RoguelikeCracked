@@ -18,4 +18,9 @@ public class Relic : ScriptableObject
     public float ModifBulletSpeed;
     public GameObject BulletSkin;
 
+    [Header("Relic Description")]
+    public Sprite RelicSprite;
+    public string RelicName;
+    public string RelicDescription;
+
 }
