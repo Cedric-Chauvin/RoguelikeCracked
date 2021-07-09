@@ -22,7 +22,7 @@ MonoBehaviour:
   ModifBulletSpeed: 0
   BulletSkin: {fileID: 0}
   RelicSprite: {fileID: 21300000, guid: a543b5ec588ae6b42a8d2435dbd63c5d, type: 3}
-  RelicName: TESTNAME3 @
-  RelicDescription: TESTDESCRIPTION3 @
+  RelicName: '@'
+  RelicDescription: 1234
   RelicLVLText: 
-  RelicLVL: 2
+  RelicLVL: 3
