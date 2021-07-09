@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     public float PlayerInvincibility;
     public float VisionRange;
     public float DetectionRange;
+    public int NbReroll;
 
     [Header("Camera Stats")]
     public float CameraFOV;
