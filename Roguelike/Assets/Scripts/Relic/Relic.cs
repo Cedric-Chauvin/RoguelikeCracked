@@ -22,5 +22,6 @@ public class Relic : ScriptableObject
     public Sprite RelicSprite;
     public string RelicName;
     public string RelicDescription;
+    public bool AlreadyGet;
 
 }
