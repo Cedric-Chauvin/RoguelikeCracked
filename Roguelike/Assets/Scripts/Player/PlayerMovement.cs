@@ -23,14 +23,20 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveSpeed = P_Manager.PlayerSpeed;
-        // Input
         movement.x = joystick.Horizontal;
         movement.y = joystick.Vertical;
-
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+        if (movement != Vector2.zero)
+        {
+            moveSpeed = P_Manager.PlayerSpeed;
+            // Input
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
+        }
+        else
+        {
+            animator.SetFloat("Speed", 0);
+        }
     }
 
     void FixedUpdate()
