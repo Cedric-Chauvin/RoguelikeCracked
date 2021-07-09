@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootManager : MonoBehaviour
 {
     private PlayerManager P_Manager;
+    public Animator animator;
 
     private bool IsInRange = false;
 
@@ -103,7 +104,7 @@ public class ShootManager : MonoBehaviour
     {
         while (true)
         {
-           yield return new WaitForSeconds(P_Manager.BulletFireRate);
+            yield return new WaitForSeconds(P_Manager.BulletFireRate);
            Transform currentBullet;
 
             /*string[] projectils = { "BaseBullet", "FireBullet", "Fromage", "Patate" }; //Pour les bullets random
@@ -114,6 +115,7 @@ public class ShootManager : MonoBehaviour
             
             if (IsInRange == true && Target != null)
             {
+                animator.SetTrigger("IsShoot");
                 currentBullet = objectPooler.SpawnFromPool("BaseBullet", transform.position, Quaternion.identity).transform;
                 currentBullet.GetComponent<Rigidbody2D>().AddForce((Target.position - transform.position) * P_Manager.BulletSpeed);
             }

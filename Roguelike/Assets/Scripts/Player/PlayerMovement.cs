@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Speed", movement.sqrMagnitude);
         }
-        else
+        else if (animator.GetFloat("Speed") != 0)
         {
             animator.SetFloat("Speed", 0);
         }

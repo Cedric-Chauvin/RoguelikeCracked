@@ -6017,6 +6017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ba60f553a14484f9f3542a735c04a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 284723788}
   Target: {fileID: 0}
 --- !u!114 &284723790
 MonoBehaviour:
