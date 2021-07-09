@@ -5,19 +5,30 @@ using UnityEngine.Tilemaps;
 
 public class MapGeneration : MonoBehaviour
 {
+    [Header("MapData")]
     [SerializeField]
-    Texture2D texture;
+    int scale = 1;
     [SerializeField]
-    [CustomSlider("texture")]
-    Vector2Int mapSize;
+    int mapSize = 96;
+    [SerializeField]
+    float borderColorOffset = 1;
+    [SerializeField]
+    float startColorOffsetDistance = 50;
+    float offsetX = 0;
+    float offsetY = 0;
+
     [SerializeField]
     Tilemap ground;
     [SerializeField]
     Tilemap wall;
     [SerializeField]
+    Tilemap voidMap;
+    [SerializeField]
     List<TileBase> groundTiles;
     [SerializeField]
     List<TileBase> wallTiles;
+    [SerializeField]
+    TileBase Empty;
     [SerializeField]
     [Range(0,1)]
     float groundStart = 0.25f;
@@ -49,26 +60,47 @@ public class MapGeneration : MonoBehaviour
         prefabPositions.Clear();
         ground.ClearAllTiles();
         wall.ClearAllTiles();
+        voidMap.ClearAllTiles();
     }
 
     public void Spawn()
     {
-        for (int i = 0; i < mapSize.y; i++)
+        offsetX = Random.Range(0f, 99999f);
+        offsetY = Random.Range(0f, 99999f);
+        Vector3Int center = new Vector3Int(mapSize / 2, mapSize / 2, 0);
+
+        for (int i = 0; i < mapSize; i++)
         {
-            for (int j = 0; j < mapSize.x; j++)
+            for (int j = 0; j < mapSize; j++)
             {
+                float xCoord = (float)i / mapSize * scale + offsetX;
+                float yCoord = (float)j / mapSize * scale + offsetY;
+
+                float sample = Mathf.PerlinNoise(xCoord, yCoord);
+
                 Vector3Int tilePosition = new Vector3Int(i, j, 0);
-                if (texture.GetPixel(i, j).grayscale > groundStart)
+
+                if (sample > groundStart)
                 {
-                    ground.SetTile(tilePosition, groundTiles[0]);
+                    float distance = Vector3Int.Distance(tilePosition, center);
+                    if (distance > startColorOffsetDistance)
+                    {
+                        sample -= Mathf.Lerp(0, borderColorOffset, (distance - startColorOffsetDistance) / (mapSize - startColorOffsetDistance));
+                    }
+                    if (sample > groundStart)
+                    {
+                        ground.SetTile(tilePosition, groundTiles[0]);
+                    }
                 }
-                if (texture.GetPixel(i, j).grayscale > wallStart)
+                if (sample > wallStart)
                 {
                     wall.SetTile(tilePosition, wallTiles[0]);
                 }
+                if (sample <= groundStart)
+                    voidMap.SetTile(tilePosition, Empty);
             }
         }
-        ImportPrefab(new Vector2Int(mapSize.x/2,mapSize.y/2),"Spawn");
+        ImportPrefab(Vector3to2(center),"Spawn");
         for (int i = 0; i < 6; i++)
         {
             ImportPrefabRandomly();
@@ -80,8 +112,8 @@ public class MapGeneration : MonoBehaviour
     {
         prefabTry++;
 
-        int x = Random.Range(0, mapSize.x);
-        int y = Random.Range(0, mapSize.y);
+        int x = Random.Range(0, mapSize);
+        int y = Random.Range(0, mapSize);
         Vector2Int position = new Vector2Int(x, y);
         string prefabName = "Test";
         bool canAddPrefab = true;
@@ -111,8 +143,8 @@ public class MapGeneration : MonoBehaviour
                 break;
 
             position += Vector2Int.RoundToInt(direction.normalized * Random.Range(distanceBetweenPrefab/2,distanceBetweenPrefab));
-            Vector2Int offset = new Vector2Int(2, 2);
-            position.Clamp(-offset, mapSize + offset);
+            Vector2Int offset = Vector2Int.one * 2;
+            position.Clamp(-offset, Vector2Int.one * mapSize + offset);
 
             whileTry++;
         } while (!canAddPrefab && whileTry<5);
@@ -136,8 +168,10 @@ public class MapGeneration : MonoBehaviour
         bounds.position = Vector2to3(position) - new Vector3Int(2,2,0);
         ground.SetTilesBlock(bounds, prefab.groundTiles);
         wall.SetTilesBlock(bounds, prefab.wallTiles);
+        voidMap.SetTilesBlock(bounds, new TileBase[bounds.size.x * bounds.size.y]);
         prefabPositions.Add(position);
     }
 
     private Vector3Int Vector2to3(Vector2Int vector) => new Vector3Int(vector.x, vector.y, 0);
+    private Vector2Int Vector3to2(Vector3Int vector) => new Vector2Int(vector.x, vector.y);
 }

@@ -96,7 +96,7 @@ public class ShootManager : MonoBehaviour
     private bool isInSight(Transform enemy)
     {
         int Count = 0;
-        RaycastHit2D[] hit = Physics2D.LinecastAll(transform.position, enemy.position);
+        RaycastHit2D[] hit = Physics2D.LinecastAll(transform.position, enemy.position,10);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.tag != "Wall")
