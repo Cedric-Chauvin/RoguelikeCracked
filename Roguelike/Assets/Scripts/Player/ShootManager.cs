@@ -44,11 +44,12 @@ public class ShootManager : MonoBehaviour
                 Distance = Vector2.Distance(transform.position, Target.position);
                 if (Distance > P_Manager.DetectionRange || !isInSight(Target))//si la target est hors range ou hors vue
                 {
-                    Distance = -1; 
-                    IsInRange = false;
-                    Target = null;
+                    ResetTarget();
                 }
             }
+            else
+                ResetTarget();
+
             foreach (var collider in colls)
             {
                 if (Target != null && collider.gameObject == Target.gameObject)
@@ -80,11 +81,16 @@ public class ShootManager : MonoBehaviour
         }
         else
         {
-            Distance = -1;
-            Target = null;
-            IsInRange = false;
+            ResetTarget();
             //Debug.Log("Pas d'ennemies");
         }
+    }
+
+    private void ResetTarget()
+    {
+        Distance = -1;
+        Target = null;
+        IsInRange = false;
     }
 
     private bool isInSight(Transform enemy)
