@@ -16,23 +16,19 @@ public class UI_Relic : MonoBehaviour
 
     private PlayerManager P_Manager;
 
-
     [Header("List Relics")]
-    public List<Relic> List_Relics_Pool = new List<Relic>();
-    public List<List<Relic>> All_List_Relics = new List<List<Relic>>();
-    public List<Relic> List_RelicsLVL2 = new List<Relic>();
-    public List<Relic> List_RelicsLVL3 = new List<Relic>();
-    public List<Relic> List3Relics = new List<Relic>();
+    private List<Relic> List_Relics_Pool = new List<Relic>();
+    private List<Relic> List3Relics = new List<Relic>();
+    public All_RelicLVL List_AllRelicLVL;
 
     public int RerollRemaining;
 
     private void Start()
     {
-        All_List_Relics.Add(null);
-        All_List_Relics.Add(List_RelicsLVL2);
-        All_List_Relics.Add(List_RelicsLVL3);
-
-        
+        for (int i = 0; i < List_AllRelicLVL.List_AllRelicsLVL[0].List_RelicsLVL.Count; i++)
+        {
+            List_Relics_Pool.Add(List_AllRelicLVL.List_AllRelicsLVL[0].List_RelicsLVL[i]);
+        }
         P_Manager = GameObject.Find("Player").GetComponent<PlayerManager>();
         List3Relics = Reroll();
     }
@@ -43,9 +39,9 @@ public class UI_Relic : MonoBehaviour
         int RelicLVL = SelectedRelic.RelicLVL;
         int IndexSelected = List_Relics_Pool.IndexOf(SelectedRelic);
 
-        if (RelicLVL < All_List_Relics.Count)
+        if (RelicLVL < List_AllRelicLVL.List_AllRelicsLVL.Count)
         {
-            List_Relics_Pool[IndexSelected] = All_List_Relics[RelicLVL][IndexSelected];
+            List_Relics_Pool[IndexSelected] = List_AllRelicLVL.List_AllRelicsLVL[RelicLVL].List_RelicsLVL[IndexSelected];
         }
         P_Manager.ApplyRelic(SelectedRelic);
         RerollRemaining = P_Manager.NbReroll;

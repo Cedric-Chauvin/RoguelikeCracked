@@ -62,7 +62,6 @@ public class PlayerManager : MonoBehaviour
 
     public void ApplyRelic(Relic SelectedRelic)
     {
-
         PlayerSize = PlayerSize * (1 + SelectedRelic.ModifSize);
         PlayerSpeed = PlayerSpeed * (1 + SelectedRelic.ModifSpeed);
         transform.localScale = new Vector3(transform.localScale.x * PlayerSize, transform.localScale.y * PlayerSize, 1);
