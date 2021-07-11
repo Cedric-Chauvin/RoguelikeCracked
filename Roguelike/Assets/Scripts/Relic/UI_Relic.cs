@@ -16,9 +16,9 @@ public class UI_Relic : MonoBehaviour
 
     private PlayerManager P_Manager;
 
-    [Header("List Relics")]
     private List<Relic> List_Relics_Pool = new List<Relic>();
     private List<Relic> List3Relics = new List<Relic>();
+    [Header("List Relics")]
     public All_RelicLVL List_AllRelicLVL;
 
     public int RerollRemaining;
