@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyIA : MonoBehaviour
 {
@@ -9,14 +10,20 @@ public class EnemyIA : MonoBehaviour
     private GameObject Player;
 
     private Vector2 PlayerPosition;
+    private AIPath aiPath;
+    private AIDestinationSetter aiDestinationSetter;
 
     private float EnemyHP;
     public float EnemyDamage;
 
     private void Start()
     {
+        aiPath = GetComponent<AIPath>();
+        aiDestinationSetter = GetComponent<AIDestinationSetter>();
+        aiPath.maxSpeed = Stats.EnemySpeed;
         Player = GameObject.Find("Player");
         P_Manager = Player.GetComponent<PlayerManager>();
+        aiDestinationSetter.target = Player.transform;
         EnemyHP = Stats.EnemyHP;
         EnemyDamage = Stats.EnemyDamage;
     }
@@ -25,9 +32,9 @@ public class EnemyIA : MonoBehaviour
     {
         if (Player != null)
         {
-            PlayerPosition = Player.transform.position;
-            float step = Stats.EnemySpeed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(gameObject.transform.position, PlayerPosition, step);
+            //PlayerPosition = Player.transform.position;
+            //float step = Stats.EnemySpeed * Time.deltaTime;
+            //transform.position = Vector2.MoveTowards(gameObject.transform.position, PlayerPosition, step);
         }
     }
 

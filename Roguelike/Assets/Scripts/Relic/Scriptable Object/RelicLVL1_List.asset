@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RelicLVL1_List
   m_EditorClassIdentifier: 
   List_RelicsLVL:
-  - {fileID: 11400000, guid: 572a347a6b89f3f4aa70730b2fa7692f, type: 2}
+  - {fileID: 11400000, guid: 7e5bedfef59afbc4796947499a204474, type: 2}
   - {fileID: 11400000, guid: 456f1c150fcdc1842b4928aa7bd1e6d8, type: 2}
   - {fileID: 11400000, guid: 40bbbfba7b6ef624fa8c6b706c7e1ae8, type: 2}
   - {fileID: 11400000, guid: 040a83011bc488f408b8d3486d8d1ef9, type: 2}
