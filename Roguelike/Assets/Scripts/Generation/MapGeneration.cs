@@ -49,6 +49,8 @@ public class MapGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Clear();
+        Spawn();
     }
 
     // Update is called once per frame
@@ -78,6 +80,8 @@ public class MapGeneration : MonoBehaviour
         gg.isometricAngle = 60;
         gg.rotation = new Vector3(45 - 90, 270, 90);
 
+        AstarPath.active.scanOnStartup = false;
+        AstarPath.active.logPathResults = PathLog.OnlyErrors;
         AstarPath.active.Scan(gg);
 
         offsetX = Random.Range(0f, 99999f);
