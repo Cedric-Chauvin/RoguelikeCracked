@@ -90,6 +90,7 @@ public class MapGeneration : MonoBehaviour
                     if (sample > groundStart)
                     {
                         ground.SetTile(tilePosition, groundTiles[0]);
+                        PlaceVoidOnBorder(tilePosition);
                     }
                 }
                 if (sample > wallStart)
@@ -148,9 +149,18 @@ public class MapGeneration : MonoBehaviour
 
             whileTry++;
         } while (!canAddPrefab && whileTry<5);
-        
+
         if (canAddPrefab)
-            ImportPrefab(position, prefabName);
+        {
+            try
+            {
+                ImportPrefab(position, prefabName);
+            }
+            catch (PlaceExecption)
+            {
+                ImportPrefabRandomly();
+            }
+        }
         else
         {
             if (prefabTry > 50)
@@ -166,12 +176,89 @@ public class MapGeneration : MonoBehaviour
         PrefabData prefab = prefabGrid.GetPrefab(name);
         BoundsInt bounds = prefab.bounds;
         bounds.position = Vector2to3(position) - new Vector3Int(2,2,0);
-        ground.SetTilesBlock(bounds, prefab.groundTiles);
-        wall.SetTilesBlock(bounds, prefab.wallTiles);
-        voidMap.SetTilesBlock(bounds, new TileBase[bounds.size.x * bounds.size.y]);
-        prefabPositions.Add(position);
+
+        bool canBePlaced = false;
+        TileBase[] groundTiles = ground.GetTilesBlock(bounds);
+        foreach (var item in groundTiles)
+        {
+            if (item)
+            {
+                canBePlaced = true;
+                break;
+            }
+        }
+
+        if (canBePlaced)
+        {
+            ground.SetTilesBlock(bounds, prefab.groundTiles);
+            wall.SetTilesBlock(bounds, prefab.wallTiles);
+            voidMap.SetTilesBlock(bounds, new TileBase[bounds.size.x * bounds.size.y]);
+            PlaceVoidOnBorder(bounds);
+            prefabPositions.Add(position);
+        }
+        else
+            throw new PlaceExecption("Fail to place prefab");
+    }
+
+    private void PlaceVoidOnBorder(Vector3Int tileposition)
+    {
+        if (tileposition.x == 0)
+            voidMap.SetTile(tileposition + Vector3Int.left, Empty);
+        else if (tileposition.x == mapSize-1)
+            voidMap.SetTile(tileposition + Vector3Int.right, Empty);
+        if (tileposition.y == 0)
+            voidMap.SetTile(tileposition + Vector3Int.down, Empty);
+        else if (tileposition.y == mapSize - 1)
+            voidMap.SetTile(tileposition + Vector3Int.up, Empty);
+    }
+    private void PlaceVoidOnBorder(BoundsInt bounds)
+    {
+        //Check if place on border return if not
+        Vector3Int max = bounds.position + bounds.size;
+        if (bounds.position.x > 0 && bounds.position.y > 0)
+        {
+            if (max.x < mapSize && max.y < mapSize)
+                return;
+        }
+
+        int y = bounds.position.y;
+        int x = bounds.position.x;
+        for (int i = x-1; i < max.x+1; i++)
+        {
+            Vector3Int checkPosition = new Vector3Int(i, y - 1, 0);
+            if (!isInMap(checkPosition))
+                voidMap.SetTile(checkPosition, Empty);
+            checkPosition.y = max.y;
+            if (!isInMap(checkPosition))
+                voidMap.SetTile(checkPosition, Empty);
+        }
+        for (int i = y; i < max.y; i++)
+        {
+            Vector3Int checkPosition = new Vector3Int(x - 1, i, 0);
+            if (!isInMap(checkPosition))
+                voidMap.SetTile(checkPosition, Empty);
+            checkPosition.x = max.x;
+            if (!isInMap(checkPosition))
+                voidMap.SetTile(checkPosition, Empty);
+        }
+
+    }
+
+    private bool isInMap(Vector3Int position)
+    {
+        if (position.x < 0 || position.x >= mapSize)
+            return false;
+        if (position.y < 0 || position.y >= mapSize)
+            return false;
+        return true;
     }
 
     private Vector3Int Vector2to3(Vector2Int vector) => new Vector3Int(vector.x, vector.y, 0);
     private Vector2Int Vector3to2(Vector3Int vector) => new Vector2Int(vector.x, vector.y);
+}
+
+
+public class PlaceExecption : System.Exception
+{
+    public PlaceExecption(string message) : base(message) {}
 }
