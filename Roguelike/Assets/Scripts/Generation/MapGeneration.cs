@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class MapGeneration : MonoBehaviour
     float startColorOffsetDistance = 50;
     float offsetX = 0;
     float offsetY = 0;
+    const int AstarOffset = 12; 
 
     [SerializeField]
     Tilemap ground;
@@ -65,48 +67,69 @@ public class MapGeneration : MonoBehaviour
 
     public void Spawn()
     {
+        // This holds all graph data
+        AstarData data = AstarPath.active.data;
+        // This creates a Point Graph
+        GridGraph gg = data.AddGraph(typeof(GridGraph)) as GridGraph;
+        gg.center = new Vector3(0,24,0);
+        gg.SetDimensions(120, 120, 0.7071f);
+        gg.isometricAngle = 60;
+        gg.rotation = new Vector3(45 - 90, 270, 90);
+
+        AstarPath.active.Scan(gg);
+
         offsetX = Random.Range(0f, 99999f);
         offsetY = Random.Range(0f, 99999f);
         Vector3Int center = new Vector3Int(mapSize / 2, mapSize / 2, 0);
 
-        for (int i = 0; i < mapSize; i++)
+        AstarPath.active.AddWorkItem(new AstarWorkItem(() =>
         {
-            for (int j = 0; j < mapSize; j++)
+
+            for (int i = 0; i < mapSize; i++)
             {
-                float xCoord = (float)i / mapSize * scale + offsetX;
-                float yCoord = (float)j / mapSize * scale + offsetY;
-
-                float sample = Mathf.PerlinNoise(xCoord, yCoord);
-
-                Vector3Int tilePosition = new Vector3Int(i, j, 0);
-
-                if (sample > groundStart)
+                for (int j = 0; j < mapSize; j++)
                 {
-                    float distance = Vector3Int.Distance(tilePosition, center);
-                    if (distance > startColorOffsetDistance)
-                    {
-                        sample -= Mathf.Lerp(0, borderColorOffset, (distance - startColorOffsetDistance) / (mapSize - startColorOffsetDistance));
-                    }
+                    float xCoord = (float)i / mapSize * scale + offsetX;
+                    float yCoord = (float)j / mapSize * scale + offsetY;
+
+                    float sample = Mathf.PerlinNoise(xCoord, yCoord);
+
+                    Vector3Int tilePosition = new Vector3Int(i, j, 0);
+
                     if (sample > groundStart)
                     {
-                        ground.SetTile(tilePosition, groundTiles[0]);
-                        PlaceVoidOnBorder(tilePosition);
+                        float distance = Vector3Int.Distance(tilePosition, center);
+                        if (distance > startColorOffsetDistance)
+                        {
+                            sample -= Mathf.Lerp(0, borderColorOffset, (distance - startColorOffsetDistance) / (mapSize - startColorOffsetDistance));
+                        }
+                        if (sample > groundStart)
+                        {
+                            ground.SetTile(tilePosition, groundTiles[0]);
+                            PlaceVoidOnBorder(tilePosition);
+                            gg.GetNode(tilePosition.x + AstarOffset, tilePosition.y + AstarOffset).Walkable = true;
+                        }
+                    }
+                    if (sample > wallStart)
+                    {
+                        wall.SetTile(tilePosition, wallTiles[0]);
+                        gg.GetNode(tilePosition.x + AstarOffset, tilePosition.y + AstarOffset).Walkable = false;
+                    }
+                    if (sample <= groundStart)
+                    {
+                        voidMap.SetTile(tilePosition, Empty);
                     }
                 }
-                if (sample > wallStart)
-                {
-                    wall.SetTile(tilePosition, wallTiles[0]);
-                }
-                if (sample <= groundStart)
-                    voidMap.SetTile(tilePosition, Empty);
             }
-        }
-        ImportPrefab(Vector3to2(center),"Spawn");
-        for (int i = 0; i < 6; i++)
-        {
-            ImportPrefabRandomly();
-        }
 
+            ImportPrefab(Vector3to2(center), "Spawn");
+            for (int i = 0; i < 6; i++)
+            {
+                ImportPrefabRandomly();
+            }
+
+            gg.GetNodes(node => gg.CalculateConnections((GridNodeBase)node));
+        }));
     }
 
     private void ImportPrefabRandomly()
@@ -195,6 +218,22 @@ public class MapGeneration : MonoBehaviour
             voidMap.SetTilesBlock(bounds, new TileBase[bounds.size.x * bounds.size.y]);
             PlaceVoidOnBorder(bounds);
             prefabPositions.Add(position);
+
+            var gg = AstarPath.active.data.gridGraph;
+            int sizeX = bounds.size.x;
+            for (int i = 0; i < sizeX; i++)
+            {
+                for (int j = 0; j < bounds.size.y; j++)
+                {
+                    int index = sizeX * i + j;
+                    if (prefab.wallTiles[index])
+                        gg.GetNode(bounds.position.x + i + AstarOffset, bounds.position.y + j + AstarOffset).Walkable = false;
+                    else if(prefab.groundTiles[index])
+                        gg.GetNode(bounds.position.x + i + AstarOffset, bounds.position.y + j + AstarOffset).Walkable = true;
+                    else
+                        gg.GetNode(bounds.position.x + i + AstarOffset, bounds.position.y + j + AstarOffset).Walkable = false;
+                }
+            }
         }
         else
             throw new PlaceExecption("Fail to place prefab");
