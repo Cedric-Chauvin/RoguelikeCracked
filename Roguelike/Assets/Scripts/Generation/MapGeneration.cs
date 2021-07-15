@@ -69,6 +69,8 @@ public class MapGeneration : MonoBehaviour
     {
         // This holds all graph data
         AstarData data = AstarPath.active.data;
+        if(data.gridGraph != null)
+            data.RemoveGraph(data.gridGraph);
         // This creates a Point Graph
         GridGraph gg = data.AddGraph(typeof(GridGraph)) as GridGraph;
         gg.center = new Vector3(0,24,0);
