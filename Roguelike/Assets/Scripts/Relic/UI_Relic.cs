@@ -13,7 +13,7 @@ public class UI_Relic : MonoBehaviour
     public Image[] RelicSprite = new Image[3];
     public Button RerollButton;
     private GameObject Relic_Menu;
-    public GameObject BlurUI;
+    public GameObject BlackScreen;
 
     private PlayerManager P_Manager;
 
@@ -49,13 +49,13 @@ public class UI_Relic : MonoBehaviour
         RerollRemaining = P_Manager.NbReroll;
 
         Time.timeScale = 1;
-        BlurUI.SetActive(false);
+        BlackScreen.SetActive(false);
         Relic_Menu.SetActive(false);
     }   
 
     private void OnEnable()
     {
-        BlurUI.SetActive(true);
+        BlackScreen.SetActive(true);
         List3Relics = Reroll();
     }
 

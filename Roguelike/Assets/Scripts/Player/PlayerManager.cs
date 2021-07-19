@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     public float VisionRange;
     public float DetectionRange;
     public int NbReroll;
+    public int KillCount;
 
     [Header("Player Relics")]
     public List<Relic> PlayerRelic;
