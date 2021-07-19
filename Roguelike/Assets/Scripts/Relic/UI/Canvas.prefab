@@ -1378,7 +1378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4644739638893106741
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1507,10 +1507,10 @@ RectTransform:
   m_Father: {fileID: 4644739638893106741}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -286}
-  m_SizeDelta: {x: -322.1575, y: -1179.4033}
+  m_SizeDelta: {x: 397.8425, y: 100.59668}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5307314882762423877
 CanvasRenderer:
@@ -2807,10 +2807,10 @@ RectTransform:
   m_Father: {fileID: 4644739638893106741}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 3.999878, y: 233}
-  m_SizeDelta: {x: -54.199097, y: -1083.9592}
+  m_SizeDelta: {x: 665.8009, y: 196.04077}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1508717188557012461
 CanvasRenderer:
@@ -3419,10 +3419,10 @@ RectTransform:
   m_Father: {fileID: 4644739638893106741}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 3.999878, y: -24}
-  m_SizeDelta: {x: -54.199097, y: -1083.9592}
+  m_SizeDelta: {x: 665.8009, y: 196.04077}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3832748118206701602
 CanvasRenderer:
@@ -4298,10 +4298,10 @@ RectTransform:
   m_Father: {fileID: 4644739638893106741}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 4, y: 488.39844}
-  m_SizeDelta: {x: -54.199097, y: -1083.9592}
+  m_SizeDelta: {x: 665.8009, y: 196.04077}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9021083895176333695
 CanvasRenderer:
