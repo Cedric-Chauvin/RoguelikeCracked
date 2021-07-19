@@ -9116,29 +9116,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 661357283574669116, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 661357283574669116, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.016
-      objectReference: {fileID: 0}
-    - target: {fileID: 1147644884517325307, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4250081840592663581, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4250081840592663581, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.913
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 4250081840592663581, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.505
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4250081840592663581, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9176,77 +9164,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Entity_01
       objectReference: {fileID: 0}
-    - target: {fileID: 5494249274747166365, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720395851015358833, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720395851015358833, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720395851015358833, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.244
-      objectReference: {fileID: 0}
-    - target: {fileID: 7730321029080755367, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
---- !u!1 &4911798457842603906 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4455904920361510027, guid: 1ca50a139dad06049889ad60eefcf0d5, type: 3}
-  m_PrefabInstance: {fileID: 4911798457842603905}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &4911798457842603907
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4911798457842603906}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 378893e412cdbf14294268903fd065b3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!68 &4911798457842603910
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4911798457842603906}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.0032082796, y: 0.5541209}
-  - {x: 1.0248127, y: 0.014214098}
-  - {x: -0.0025993586, y: -0.5051175}
-  - {x: -1.0086166, y: 0.0026513934}
-  - {x: -0.0011254549, y: 0.55380714}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1001 &4999469399272746089
 PrefabInstance:
   m_ObjectHideFlags: 0
