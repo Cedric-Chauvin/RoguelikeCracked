@@ -51,6 +51,7 @@ public class EnemyIA : MonoBehaviour
             StartCoroutine(FlashAnim());
             if (EnemyHP <= 0)
             {
+                P_Manager.KillCount++;
                 Destroy(gameObject);
             }
         }

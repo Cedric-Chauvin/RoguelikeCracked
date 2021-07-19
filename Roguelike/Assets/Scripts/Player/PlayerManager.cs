@@ -34,6 +34,7 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         PlayerHPMax = PlayerHP;
+        KillCount = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
