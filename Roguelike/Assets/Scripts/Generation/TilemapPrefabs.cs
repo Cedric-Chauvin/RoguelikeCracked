@@ -30,13 +30,25 @@ public class TilemapPrefabs : MonoBehaviour
 
     public void UpdateInfo()
     {
-        foreach (var item in prefabs)
+        foreach (var prefab in prefabs)
         {
-            item.groundTiles = ground.GetTilesBlock(item.bounds);
-            item.wallTiles = wall.GetTilesBlock(item.bounds);
+            prefab.groundTiles = ground.GetTilesBlock(prefab.bounds);
+            prefab.wallTiles = wall.GetTilesBlock(prefab.bounds);
+
+            foreach (var entitie in prefab.entities)
+            {
+                Vector3 localPosition = prefab.bounds.position + Vector2to3(entitie.positionOnPattern);
+                Vector3 position1 = ground.CellToWorld(Vector3Int.FloorToInt(localPosition));
+                Vector3 position2 = ground.CellToWorld(Vector3Int.CeilToInt(localPosition));
+                Vector3 realPosition = new Vector3();
+                realPosition.x = Mathf.Lerp(position1.x, position2.x, entitie.positionOnPattern.x - Mathf.Floor(entitie.positionOnPattern.x));
+                realPosition.y = Mathf.Lerp(position1.y, position2.y, entitie.positionOnPattern.y - Mathf.Floor(entitie.positionOnPattern.y));
+                entitie.gameObject.transform.position = realPosition;
+            }
         }
     }
 
+    private Vector3 Vector2to3(Vector2 vector) => new Vector3(vector.x, vector.y, 0);
 }
 
 [System.Serializable]
@@ -48,5 +60,13 @@ public class PrefabData
     public TileBase[] groundTiles;
     [HideInInspector]
     public TileBase[] wallTiles;
+    public List<EntityData> entities;
+}
+
+[System.Serializable]
+public class EntityData
+{
+    public GameObject gameObject;
+    public Vector2 positionOnPattern;
 }
 
