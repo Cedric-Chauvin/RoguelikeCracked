@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Stats")]
     public float PlayerSpeed;
     public float PlayerHP;
+    private float PlayerHPMax;
     public float PlayerSize;
     public float PlayerInvincibility;
     public float VisionRange;
@@ -19,6 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Camera Stats")]
     public float CameraFOV;
+    public Image PlayerHealthUI;
 
     [Header("Bullets Stats")]
     public float BulletDamage;
@@ -26,6 +29,11 @@ public class PlayerManager : MonoBehaviour
     public float BulletSpeed;
     public float BulletDuration;
     public GameObject BulletSkin;
+
+    private void Awake()
+    {
+        PlayerHPMax = PlayerHP;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -50,6 +58,13 @@ public class PlayerManager : MonoBehaviour
         while (true)
         {
             PlayerHP -= Enemy.EnemyDamage;
+            Debug.Log(255 * (1 - PlayerHP / PlayerHPMax));
+            Color32 PlayerHPcolor = PlayerHealthUI.color;
+            int alpha = (int) (255 * (1 - PlayerHP / PlayerHPMax));
+            int alphaInt = (int)Mathf.Lerp(alpha, PlayerHPcolor.a, Time.deltaTime);
+            PlayerHPcolor.a = (byte)alphaInt;
+            PlayerHealthUI.color = PlayerHPcolor;
+
             if (PlayerHP <= 0)
             {
                 this.gameObject.SetActive(false);

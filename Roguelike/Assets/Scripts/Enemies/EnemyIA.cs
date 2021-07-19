@@ -8,6 +8,8 @@ public class EnemyIA : MonoBehaviour
     public EnemyStats Stats;
     public PlayerManager P_Manager;
     private GameObject Player;
+    public Material FlashHitMaterial;
+    private Material StartMaterial;
 
     private Vector2 PlayerPosition;
     private AIPath aiPath;
@@ -18,6 +20,7 @@ public class EnemyIA : MonoBehaviour
 
     private void Start()
     {
+        StartMaterial = GetComponent<SpriteRenderer>().material;
         aiPath = GetComponent<AIPath>();
         aiDestinationSetter = GetComponent<AIDestinationSetter>();
         aiPath.maxSpeed = Stats.EnemySpeed;
@@ -45,10 +48,19 @@ public class EnemyIA : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             EnemyHP -= P_Manager.BulletDamage;
+            StartCoroutine(FlashAnim());
             if (EnemyHP <= 0)
             {
                 Destroy(gameObject);
             }
         }
+    }
+
+    IEnumerator FlashAnim()
+    {
+        GetComponent<SpriteRenderer>().material = FlashHitMaterial;
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<SpriteRenderer>().material = StartMaterial;
+        StopCoroutine(FlashAnim());
     }
 }
