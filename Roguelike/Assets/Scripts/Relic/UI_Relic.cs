@@ -12,7 +12,8 @@ public class UI_Relic : MonoBehaviour
     public TextMeshProUGUI[] RelicLVL = new TextMeshProUGUI[3];
     public Image[] RelicSprite = new Image[3];
     public Button RerollButton;
-    public GameObject Relic_Menu;
+    private GameObject Relic_Menu;
+    public GameObject BlurUI;
 
     private PlayerManager P_Manager;
 
@@ -25,6 +26,7 @@ public class UI_Relic : MonoBehaviour
 
     private void Start()
     {
+        Relic_Menu = this.gameObject;
         for (int i = 0; i < List_AllRelicLVL.List_AllRelicsLVL[0].List_RelicsLVL.Count; i++)
         {
             List_Relics_Pool.Add(List_AllRelicLVL.List_AllRelicsLVL[0].List_RelicsLVL[i]);
@@ -47,11 +49,13 @@ public class UI_Relic : MonoBehaviour
         RerollRemaining = P_Manager.NbReroll;
 
         Time.timeScale = 1;
+        BlurUI.SetActive(false);
         Relic_Menu.SetActive(false);
     }   
 
     private void OnEnable()
     {
+        BlurUI.SetActive(true);
         List3Relics = Reroll();
     }
 
