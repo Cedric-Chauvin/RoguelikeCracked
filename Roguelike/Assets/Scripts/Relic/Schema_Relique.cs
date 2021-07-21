@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Schema_Relique : MonoBehaviour
 {
-    public GameObject UI_Relic;
+    private GameObject Canvas;
+    private GameObject UI_Relic;
+
+    private void Start()
+    {
+        Canvas = GameObject.Find("Canvas");
+        UI_Relic = Canvas.GetComponent<InactiveUIGameObject>().InactiveUI[0];
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

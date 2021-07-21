@@ -10,10 +10,11 @@ public class PauseMenu : MonoBehaviour
     public TextMeshProUGUI[] Value = new TextMeshProUGUI[5];
     public TextMeshProUGUI WorldName;
 
+    [Header("UI GameObject")]
     public GameObject BlackScreen;
     public GameObject PauseMenuUI;
-
     public GameObject PauseButton;
+
     private PlayerManager P_Manager;
 
 

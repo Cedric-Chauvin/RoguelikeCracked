@@ -21,6 +21,9 @@ public class EntityAnimator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameObject Player = collision.gameObject;
+        float angle = Vector2.Angle(Vector2.down, Player.transform.position - transform.position);
+
         if (collision.tag == "Player" && EntityAnim.GetBool("Awake") == false)
         {
             EntityAnim.SetBool("Awake", true);
