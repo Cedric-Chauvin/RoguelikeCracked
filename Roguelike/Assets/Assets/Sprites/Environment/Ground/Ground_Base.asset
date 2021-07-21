@@ -16,7 +16,7 @@ MonoBehaviour:
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 0
   m_TilingRules:
-  - m_Id: 0
+  - m_Id: 4
     m_Sprites:
     - {fileID: 21300000, guid: 933a22041b0a8764c9726d56319c5693, type: 3}
     m_GameObject: {fileID: 0}
@@ -33,7 +33,7 @@ MonoBehaviour:
     - {x: 1, y: 0, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 1
+  - m_Id: 5
     m_Sprites:
     - {fileID: 21300000, guid: bb378b72fc87c924fa80f7e41258c617, type: 3}
     m_GameObject: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 2
+  - m_Id: 6
     m_Sprites:
     - {fileID: 21300000, guid: 9d11c5a4889827d4788e9ae545e1d7eb, type: 3}
     m_GameObject: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 3
+  - m_Id: 7
     m_Sprites:
     - {fileID: 21300000, guid: bdf0de6dabceebb438e99cfe49f0d20d, type: 3}
     m_GameObject: {fileID: 0}
@@ -84,7 +84,7 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 4
+  - m_Id: 8
     m_Sprites:
     - {fileID: 21300000, guid: 31aac562251b7f94ea783348b67bfa21, type: 3}
     m_GameObject: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: 0, y: 1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 5
+  - m_Id: 9
     m_Sprites:
     - {fileID: 21300000, guid: ab197c77d186d87469763979b2149d3f, type: 3}
     m_GameObject: {fileID: 0}
@@ -118,7 +118,7 @@ MonoBehaviour:
     - {x: 0, y: 1, z: 0}
     - {x: 1, y: 0, z: 0}
     m_RuleTransform: 0
-  - m_Id: 6
+  - m_Id: 10
     m_Sprites:
     - {fileID: 21300000, guid: eec9e732e32bca64c9c3e83b94265cee, type: 3}
     m_GameObject: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
     - {x: 0, y: 1, z: 0}
     - {x: 1, y: 0, z: 0}
     m_RuleTransform: 0
-  - m_Id: 7
+  - m_Id: 11
     m_Sprites:
     - {fileID: 21300000, guid: 399cc70f1e750ae4ba595fde81a54a4f, type: 3}
     m_GameObject: {fileID: 0}
@@ -152,7 +152,7 @@ MonoBehaviour:
     - {x: 1, y: 0, z: 0}
     - {x: 0, y: 1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 8
+  - m_Id: 12
     m_Sprites:
     - {fileID: 21300000, guid: 126809c073097c649a0e551723fe285b, type: 3}
     m_GameObject: {fileID: 0}
@@ -169,7 +169,7 @@ MonoBehaviour:
     - {x: 1, y: 0, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 9
+  - m_Id: 13
     m_Sprites:
     - {fileID: 21300000, guid: a486e274da5a3cc459e4de8c95d140eb, type: 3}
     m_GameObject: {fileID: 0}
@@ -186,7 +186,7 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: 0, y: 1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 10
+  - m_Id: 14
     m_Sprites:
     - {fileID: 21300000, guid: 53262fcb82c17f9439e1c0887c1974ec, type: 3}
     m_GameObject: {fileID: 0}
@@ -203,7 +203,7 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 11
+  - m_Id: 15
     m_Sprites:
     - {fileID: 21300000, guid: 1a64a5a3c98ea6f4185ce643038828e6, type: 3}
     m_GameObject: {fileID: 0}
@@ -220,7 +220,7 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 12
+  - m_Id: 16
     m_Sprites:
     - {fileID: 21300000, guid: f4dbb926ff746dd4096ce44e56dd79e8, type: 3}
     m_GameObject: {fileID: 0}
@@ -237,7 +237,7 @@ MonoBehaviour:
     - {x: 0, y: 1, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 13
+  - m_Id: 17
     m_Sprites:
     - {fileID: 21300000, guid: 9c5c5f91867f64748bbacc9fe72dde69, type: 3}
     m_GameObject: {fileID: 0}
@@ -254,14 +254,15 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: 0, y: 1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 14
+  - m_Id: 18
     m_Sprites:
     - {fileID: 21300000, guid: bf5dcb55932562746bfdc484bfa204a9, type: 3}
+    - {fileID: 21300000, guid: 82a51d0765a3f93459fc783669eeb062, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1
-    m_PerlinScale: 0.5
-    m_Output: 0
+    m_PerlinScale: 0.3
+    m_Output: 1
     m_ColliderType: 0
     m_RandomTransform: 0
     m_Neighbors: 01000000010000000100000001000000
@@ -271,7 +272,7 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 0
-  - m_Id: 0
+  - m_Id: 19
     m_Sprites:
     - {fileID: 21300000, guid: a19b8ef7a419cc14a88bb0b8b951505e, type: 3}
     m_GameObject: {fileID: 0}
