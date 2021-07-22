@@ -237,13 +237,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52012388a78f0d44869d0e071dabca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpeed: 1
+  PlayerSpeed: 1.5
   PlayerHP: 100
   PlayerSize: 1
   PlayerInvincibility: 1
   VisionRange: 1
   DetectionRange: 2.5
+  NbReroll: 0
+  KillCount: 0
+  PlayerRelic: []
   CameraFOV: 5
+  PlayerHealthUI: {fileID: 0}
   BulletDamage: 10
   BulletFireRate: 1
   BulletSpeed: 60
