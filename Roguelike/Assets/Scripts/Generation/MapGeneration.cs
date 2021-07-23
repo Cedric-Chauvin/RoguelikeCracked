@@ -6,6 +6,17 @@ using UnityEngine.Tilemaps;
 
 public class MapGeneration : MonoBehaviour
 {
+    #region Singleton
+    private static MapGeneration instance = null;
+    public static MapGeneration Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+    #endregion
+
     [Header("MapData")]
     [SerializeField]
     int scale = 1;
@@ -17,20 +28,27 @@ public class MapGeneration : MonoBehaviour
     float startColorOffsetDistance = 50;
     float offsetX = 0;
     float offsetY = 0;
-    const int AstarOffset = 12; 
+    const int AstarOffset = 12;
 
+    [Header("Tile layers")]
     [SerializeField]
     Tilemap ground;
     [SerializeField]
     Tilemap wall;
+    Collider2D wallCollider;
     [SerializeField]
     Tilemap voidMap;
+    Collider2D voidCollider;
+
+    [Header("Tile types")]
     [SerializeField]
     List<TileBase> groundTiles;
     [SerializeField]
     List<TileBase> wallTiles;
     [SerializeField]
     TileBase Empty;
+
+    [Header("Parameter")]
     [SerializeField]
     [Range(0,1)]
     float groundStart = 0.25f;
@@ -45,6 +63,17 @@ public class MapGeneration : MonoBehaviour
     TilemapPrefabs prefabGrid;
     List<Vector2Int> prefabPositions = new List<Vector2Int>();
     int prefabTry = 0;
+
+    private void Awake()
+    {
+        if (!instance)
+            instance = this;
+        else
+            Destroy(this);
+
+        wallCollider = wall.GetComponent<Collider2D>();
+        voidCollider = voidMap.GetComponent<Collider2D>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -128,7 +157,7 @@ public class MapGeneration : MonoBehaviour
                 }
             }
 
-            ImportPrefab(Vector3to2(center), "Spawn");
+            ImportPrefab((Vector2Int)center, "Spawn");
             for (int i = 0; i < 6; i++)
             {
                 ImportPrefabRandomly();
@@ -204,7 +233,7 @@ public class MapGeneration : MonoBehaviour
     {
         PrefabData prefab = prefabGrid.GetPrefab(name);
         BoundsInt bounds = prefab.bounds;
-        bounds.position = Vector2to3(position) - new Vector3Int(2,2,0);
+        bounds.position = (Vector3Int)position - new Vector3Int(2,2,0);
 
         bool canBePlaced = false;
         TileBase[] groundTiles = ground.GetTilesBlock(bounds);
@@ -298,8 +327,23 @@ public class MapGeneration : MonoBehaviour
         return true;
     }
 
-    private Vector3Int Vector2to3(Vector2Int vector) => new Vector3Int(vector.x, vector.y, 0);
-    private Vector2Int Vector3to2(Vector3Int vector) => new Vector2Int(vector.x, vector.y);
+    public Vector2 FindSpawnablePosition(Vector2 point)
+    {
+        if (wallCollider.OverlapPoint(point))
+        {
+            Vector2 temp = wallCollider.ClosestPoint(point);
+            Vector2 dir = temp - point;
+            point = temp + dir.normalized * 0.5f;
+        }
+        else if (voidCollider.OverlapPoint(point))
+        {
+            Vector2 temp = voidCollider.ClosestPoint(point);
+            Vector2 dir = temp - point;
+            point = temp + dir.normalized * 0.5f;
+        }
+
+        return point;
+    }
 }
 
 

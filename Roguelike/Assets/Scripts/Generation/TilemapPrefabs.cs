@@ -37,7 +37,7 @@ public class TilemapPrefabs : MonoBehaviour
 
             foreach (var entitie in prefab.entities)
             {
-                Vector3 localPosition = prefab.bounds.position + Vector2to3(entitie.positionOnPattern);
+                Vector3 localPosition = prefab.bounds.position + (Vector3)entitie.positionOnPattern;
                 Vector3 position1 = ground.CellToWorld(Vector3Int.FloorToInt(localPosition));
                 Vector3 position2 = ground.CellToWorld(Vector3Int.CeilToInt(localPosition));
                 Vector3 realPosition = new Vector3();
@@ -47,8 +47,6 @@ public class TilemapPrefabs : MonoBehaviour
             }
         }
     }
-
-    private Vector3 Vector2to3(Vector2 vector) => new Vector3(vector.x, vector.y, 0);
 }
 
 [System.Serializable]
